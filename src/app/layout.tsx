@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "@/styles/globals.css";
-import Navbar from "@/components/Navbar";
+import Navbar from "./components/sections/Navbar";
 
 // Konfigurasi font Poppins
 const poppins = Poppins({

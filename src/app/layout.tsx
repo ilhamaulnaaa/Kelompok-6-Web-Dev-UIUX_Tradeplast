@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import "@/styles/globals.css";
-import Navbar from "./components/sections/Navbar";
+import { Poppins, Geist } from "next/font/google";
+import "@/styles/globals.css"; // Pastikan path CSS benar
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 // Konfigurasi font Poppins
 const poppins = Poppins({
@@ -15,17 +16,12 @@ export const metadata: Metadata = {
   description: "Platform recycle plastik yang inovatif dan ramah lingkungan",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    
-    <html lang="en"> 
-      <body className={`${poppins.variable} font-sans antialiased`}>
-        <Navbar />
-        {children} {}
+    <html lang="en" className={`${geist.variable} ${poppins.variable}`}>
+      {/* Navbar dihapus dari sini agar tidak muncul di semua halaman */}
+      <body className="font-poppins antialiased">
+        {children}
       </body>
     </html>
   );

@@ -1,15 +1,14 @@
-import "@/app/styles/styles.css";
+"use client";
+
+import TextType from "../components/bits/TextType";
 
 export default function Hero() {
   return (
     <section className="flex min-h-[90vh] w-full flex-col md:flex-row items-stretch overflow-hidden">
       {/* Kolon Kiri: Content */}
       <div className="flex flex-1 flex-col justify-center bg-[#16302B] px-8 py-20 md:px-20 lg:px-28">
-        
         {/* 1. Sub-headline (Kecil & Lemah) */}
-        <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-emerald-400/80">
-          Eco-Friendly Platform
-        </p>
+        <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-emerald-400/80">Eco-Friendly Platform</p>
 
         {/* 2. Main Title (Paling Menonjol) */}
         <h1 className="max-w-xl text-4xl font-bold leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl">
@@ -17,9 +16,20 @@ export default function Hero() {
         </h1>
 
         {/* 3. Description (Medium kontras) */}
-        <p className="mt-6 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
-          Transform your plastic waste into instant earnings while saving the planet. Join our movement today.
-        </p>
+        <div className="mt-6 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
+          <TextType
+            typingSpeed={50}
+            pauseDuration={1500}
+            showCursor
+            cursorCharacter="|"
+            text="Transform your plastic waste into instant earnings while saving the planet. Join our movement today."
+            deletingSpeed={50}
+            variableSpeedEnabled={false}
+            variableSpeedMin={60}
+            variableSpeedMax={120}
+            cursorBlinkDuration={0.5}
+          />
+        </div>
 
         {/* 4. CTA Button */}
         <div className="mt-10">
@@ -38,9 +48,9 @@ export default function Hero() {
 
       {/* Kolom Kanan: Image */}
       <div className="relative flex-1 bg-slate-100">
-        <img 
-          src="https://images.unsplash.com/photo-1614191663579-8780442c043b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-          alt="Green Environment" 
+        <img
+          src="https://images.unsplash.com/photo-1614191663579-8780442c043b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Green Environment"
           className="h-full w-full object-cover"
         />
         {/* Overlay tipis agar tidak terlalu kontras dengan sisi kiri */}
@@ -50,31 +60,4 @@ export default function Hero() {
   );
 }
 
-
-
-
-
-
-// export default function Hero() {
-//   return (
-//     <div className="heroContainer">
-//       <div className="heroContent">
-//         <div className="heroSection">
-//           <div className="heroTitle">Make money and contribute to the green environment</div>
-//         </div>
-//         <div className="heroSection">
-//           <div className="heroDescription text-xs ">Make a change to the environment and also making money</div>
-//         </div>
-//         <div className="heroButton">
-//           <div className="buttonText">Make a change</div>
-//         </div>
-//         <div className="heroSection">
-//           <div className="heroSubtext text-xs">Contribute to the green earth with our innovative recycling solutions.</div>
-//         </div>
-//       </div>
-//       <div className="heroImage">
-//         <img src="google.com" alt="Hero Image" />
-//       </div>
-//     </div>
-//   );
-// }
+// Make money and contribute to the <span className="text-emerald-400">green environment</span>

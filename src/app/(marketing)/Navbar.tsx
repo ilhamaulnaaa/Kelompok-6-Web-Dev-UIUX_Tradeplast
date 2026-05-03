@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import LoginPage from "../(auth)/login/page";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,13 +32,12 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 z-50 w-full transition-all duration-500 ease-in-out ${
-        isScrolled 
+        isScrolled
           ? "bg-[#16302B]/70 py-3 backdrop-blur-md shadow-lg" // Mode Mengecil & Translucent
           : "bg-[#16302B] py-6" // Mode Awal
       } px-12`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        
         {/* 1. Logo Section (Bisa dikecilkan sedikit saat scroll) */}
         <div className={`flex flex-1 items-center justify-start gap-2 transition-transform duration-500 ${isScrolled ? "scale-90" : "scale-100"}`}>
           <div className="relative h-10 w-10 overflow-hidden">
@@ -51,13 +51,7 @@ export default function Navbar() {
         {/* 2. Menu Section */}
         <div className="hidden md:flex items-center gap-12 lg:gap-20">
           {menuItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`text-sm font-medium transition-colors duration-300 ${
-                isScrolled ? "text-white" : "text-[#d4d4d4]"
-              } hover:text-white`}
-            >
+            <Link key={item.name} href={item.href} className={`text-sm font-medium transition-colors duration-300 ${isScrolled ? "text-white" : "text-[#d4d4d4]"} hover:text-white`}>
               {item.name}
             </Link>
           ))}
@@ -65,12 +59,8 @@ export default function Navbar() {
 
         {/* 3. Button Section */}
         <div className="flex flex-1 justify-end">
-          <Link href="#join">
-            <button 
-              className={`rounded-full bg-[#9B9A8A] font-bold text-white transition-all duration-500 hover:bg-[#82816D] hover:shadow-lg active:scale-95 ${
-                isScrolled ? "px-6 py-2 text-xs" : "px-8 py-2.5 text-sm"
-              }`}
-            >
+          <Link href="/login">
+            <button className={`rounded-full bg-[#9B9A8A] font-bold text-white transition-all duration-500 hover:bg-[#82816D] hover:shadow-lg active:scale-95 ${isScrolled ? "px-6 py-2 text-xs" : "px-8 py-2.5 text-sm"}`}>
               Join With Us
             </button>
           </Link>

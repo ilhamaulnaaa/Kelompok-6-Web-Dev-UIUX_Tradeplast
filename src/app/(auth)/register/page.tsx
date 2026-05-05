@@ -12,7 +12,7 @@ export default function RegisterPage({ searchParams }: { searchParams: { error?:
             <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Email</label>
             <input 
               name="email" type="email" required
-              className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition-all"
+              className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-slate-800 focus:outline-none focus:border-emerald-500 transition-all"
               placeholder="nama@email.com"
             />
           </div>
@@ -20,7 +20,7 @@ export default function RegisterPage({ searchParams }: { searchParams: { error?:
             <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Password</label>
             <input 
               name="password" type="password" required
-              className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition-all"
+              className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-slate-800 focus:outline-none focus:border-emerald-500 transition-all"
               placeholder="Minimal 6 karakter"
             />
           </div>

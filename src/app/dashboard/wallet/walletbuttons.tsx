@@ -38,8 +38,8 @@ export default function WalletButtons() {
 
       {/* Modal Tarik Tunai */}
       {showWithdraw && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#16302B]/60 backdrop-blur-sm text-left">
-          <div className="bg-white rounded-[32px] p-8 w-full max-w-sm shadow-2xl">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-[#16302B]/60 backdrop-blur-sm text-left">
+          <div className="bg-white rounded-4xl p-8 w-full max-w-sm shadow-2xl">
             <div className="flex justify-between items-center mb-6 text-left">
               <h3 className="text-xl font-bold text-[#16302B]">Tarik Tunai</h3>
               <button 
@@ -77,8 +77,8 @@ export default function WalletButtons() {
 
       {/* Modal Tambah Rekening */}
       {showAddAccount && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#16302B]/60 backdrop-blur-sm text-left">
-          <div className="bg-white rounded-[32px] p-8 w-full max-w-sm shadow-2xl">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-[#16302B]/60 backdrop-blur-sm text-left">
+          <div className="bg-white rounded-4xl p-8 w-full max-w-sm shadow-2xl">
             <div className="flex justify-between items-center mb-6 text-left">
               <h3 className="text-xl font-bold text-[#16302B]">Tambah Rekening</h3>
               <button 

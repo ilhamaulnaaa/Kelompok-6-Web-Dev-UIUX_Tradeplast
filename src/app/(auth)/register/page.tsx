@@ -3,7 +3,7 @@ import { signup } from "@/app/(auth)/actions";
 export default function RegisterPage({ searchParams }: { searchParams: { error?: string } }) {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-6">
-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-[32px] w-full max-w-md shadow-2xl">
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-4xl w-full max-w-md shadow-2xl">
         <h1 className="text-3xl font-bold text-emerald-500 mb-2 tracking-tighter">Buat Akun.</h1>
         <p className="text-slate-400 text-sm mb-8">Mulai langkah hijaumu bersama Tradeplast.</p>
 

@@ -1,21 +1,32 @@
 import { login } from '../actions';
 import TextType from "@/app/components/bits/TextType";
+import Link from "next/link"; // Import Link
+import { X } from "lucide-react"; // Import Icon X
 
-// Gunakan async dan definisikan searchParams sebagai Promise
 export default async function LoginPage({ 
   searchParams 
 }: { 
   searchParams: Promise<{ error?: string, message?: string }> 
 }) {
-  // Ambil data dari promise searchParams
   const { error, message } = await searchParams;
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-6">
-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-[32px] w-full max-w-md shadow-2xl">
-        <h1 className="text-3xl font-bold text-emerald-500 mb-2 tracking-tighter font-poppins">Selamat Datang.</h1>
+    <div className="min-h-screen bg-white flex items-center justify-center p-6 font-poppins">
+      {/* Tambahkan 'relative' di class parent card ini */}
+      <div className="relative bg-white/5 backdrop-blur-xl border border-slate-100 p-8 rounded-4xl w-full max-w-md shadow-2xl">
+        
+        {/* Tombol Close/Back ke Landing Page */}
+        <Link 
+          href="/" 
+          aria-label="Kembali ke Beranda"
+          className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-2 rounded-full transition-all active:scale-90"
+        >
+          <X size={20} />
+        </Link>
+
+        <h1 className="text-3xl font-bold text-emerald-500 mb-2 tracking-tighter">Selamat Datang.</h1>
         <div className="text-slate-400 text-sm mb-8">
-           <TextType
+            <TextType
                 typingSpeed={100}
                 pauseDuration={1500}
                 showCursor
@@ -27,27 +38,26 @@ export default async function LoginPage({
                 variableSpeedMax={120}
                 cursorBlinkDuration={0.5}
               />
-              </div>
+        </div>
 
         <form action={login} className="space-y-4">
           <div>
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Email</label>
+            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest italic">Email</label>
             <input 
               name="email" type="email" required
-              className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-slate-800 focus:outline-none focus:border-emerald-500 transition-all font-poppins"
+              className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 text-slate-800 focus:outline-none focus:border-emerald-500 transition-all"
               placeholder="nama@email.com"
             />
           </div>
           <div>
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Password</label>
+            <label className="text-xs font-bold text-slate-400 uppercase tracking-widest italic">Password</label>
             <input 
               name="password" type="password" required
-              className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-slate-800 focus:outline-none focus:border-emerald-500 transition-all font-poppins"
+              className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 text-slate-800 focus:outline-none focus:border-emerald-500 transition-all"
               placeholder="••••••••"
             />
           </div>
 
-          {/* Menampilkan error jika ada */}
           {error && <p className="text-red-400 text-xs font-medium">{error}</p>}
           {message && <p className="text-emerald-400 text-xs font-medium">{message}</p>}
 
@@ -57,7 +67,7 @@ export default async function LoginPage({
         </form>
 
         <p className="mt-8 text-center text-slate-500 text-sm">
-          Belum punya akun? <a href="/register" className="text-emerald-400 font-bold hover:underline">Daftar</a>
+          Belum punya akun? <Link href="/register" className="text-emerald-400 font-bold hover:underline">Daftar</Link>
         </p>
       </div>
     </div>

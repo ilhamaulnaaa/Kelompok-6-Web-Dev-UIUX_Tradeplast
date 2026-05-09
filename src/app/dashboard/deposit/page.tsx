@@ -1,15 +1,28 @@
-import { Info } from "lucide-react";
+import { Info, MapPin } from "lucide-react";
 import { createClient } from "@/utils/supabase/server";
 import DepositForm from "./depositform"; 
+import MachineSearch from "./MachineSearch"; // Import Task 3
 
-export default async function DepositPage() {
+export default async function DepositPage({ 
+  searchParams 
+}: { 
+  searchParams: Promise<{ location?: string }> 
+}) {
+  const { location } = await searchParams; // Ambil parameter dari URL [cite: 98]
   const supabase = await createClient();
 
-  // PERBAIKAN: Tambahkan 'price_per_unit' ke dalam select agar harga muncul di form
+  // 1. Ambil Kategori Plastik
   const { data: categories } = await supabase
     .from('plastic_categories')
     .select('id, code, name, common_items, unit, price_per_unit') 
     .order('unit', { ascending: false });
+
+  // 2. Ambil Lokasi Mesin (Filter berdasarkan parameter URL)
+  let machineQuery = supabase.from('machines').select('*');
+  if (location) {
+    machineQuery = machineQuery.ilike('city', `%${location}%`);
+  }
+  const { data: machines } = await machineQuery;
 
   return (
     <div className="max-w-5xl font-poppins pl-16 pt-8 text-left">
@@ -20,6 +33,8 @@ export default async function DepositPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
+          <MachineSearch /> {/* Task 3 UI */}
+          
           {categories && categories.length > 0 ? (
             <DepositForm categories={categories} />
           ) : (
@@ -29,22 +44,23 @@ export default async function DepositPage() {
           )}
         </div>
 
+        {/* List Mesin Terdekat */}
         <div className="space-y-6 text-left">
-          <div className="bg-emerald-50 p-6 rounded-3xl border border-emerald-100">
-            <div className="flex items-center gap-3 text-emerald-700 mb-4 font-bold text-sm">
-              <Info size={18} />
-              <h4>Informasi Penting</h4>
+          <div className="bg-emerald-50/50 p-6 rounded-4xl border border-emerald-100">
+            <h4 className="text-sm font-bold text-[#16302B] mb-4 uppercase tracking-wider">Mesin Terdekat</h4>
+            <div className="space-y-3">
+              {machines && machines.length > 0 ? machines.map(m => (
+                <div key={m.id} className="flex gap-3 items-start p-3 bg-white rounded-2xl border border-emerald-100 shadow-sm">
+                  <MapPin size={16} className="text-emerald-500 mt-1" />
+                  <div>
+                    <p className="text-xs font-bold text-[#16302B]">{m.name}</p>
+                    <p className="text-[10px] text-slate-400">{m.address}</p>
+                  </div>
+                </div>
+              )) : (
+                <p className="text-[10px] text-slate-400 italic">Tidak ada mesin ditemukan di area ini.</p>
+              )}
             </div>
-            <ul className="text-xs text-emerald-800/70 space-y-4 leading-relaxed text-left">
-              <li className="flex gap-2">
-                <span className="font-bold text-emerald-600">01.</span>
-                <span>Pastikan plastik dalam keadaan kosong dan bersih.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-bold text-emerald-600">02.</span>
-                <span>Gunakan mesin terdekat untuk verifikasi fisik.</span>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
